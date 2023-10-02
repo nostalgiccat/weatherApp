@@ -16,3 +16,22 @@ fetch (`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey
         console.error("Error fetching data:", error);
     });
 
+function fetchWeather() {
+    const city = document.getElementById("cityInput").value || "New York";
+    
+    fetch (`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        // Extract and display data here
+        document.getElementById("city").innerText = data.name;
+        document.getElementById("temperature").innerText = `${data.main.temp}°C`;
+        document.getElementById("condition").innetText = data.weather[0].description;
+        document.getElementById("icon").src = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+    })
+
+    .catch(error => {
+        console.error("Error fetching data:", error);
+    });
+
+}
