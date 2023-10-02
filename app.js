@@ -1,26 +1,10 @@
 const apiKey = "d4034aaf0055f7c6f88af58b17c65c9e";
-const city = "New York"; // We will change this later 
-let unit = "imperial";
+let unit = "imperial"; // default unit
 
 
-
-fetch (`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-        // Extract and display data here
-        document.getElementById("city").innerText = data.name;
-        document.getElementById("temperature").innerText = `${data.main.temp}°F`;
-        document.getElementById("condition").innerText = data.weather[0].description;
-        document.getElementById("icon").src = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
-    })
-
-    .catch(error => {
-        console.error("Error fetching data:", error);
-    });
 
 function fetchWeather(unit = "imperial") {
-    const city = document.getElementById("cityInput").value || "New York";
+    const city = document.getElementById("cityInput").value || "Phoenix";
 
     fetch (`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`)
     
@@ -47,11 +31,45 @@ function fetchWeather(unit = "imperial") {
 
 }
 
-    // add a listener event for the dropdown 
+    // add a listener event for the unit dropdown 
     document.getElementById("tempUnit").addEventListener("change", function() {
-        console.log("change");
+        
         const unit = this.value;
         fetchWeather(unit);
+        fetchForecast(unit); 
 })
 
-// Initial fetchfetchWeather(); 
+function fetchForecast(unit = "imperial") {
+    const city = document.getElementById("cityInput").value || "Phoenix";
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${unit}`)
+        .then(response => response.json())
+        .then(data => {
+            // Handle forecast data here
+            let forecastHTML = '';
+            data.list.forEach((forecast,index) => {
+                if (index % 8 === 0) {
+                    // Only take on reading per day
+                    const date = new Date(forecast.dt * 1000);
+                    const day = date.toLocaleString('en-US', {weekday: 'long'});
+                    const temperature = forecast.main.temp; 
+                    const unitSymbol = unit === "metric" ? "°C" : "°F";
+                    const icon = forecast.weather[0].icon;
+                    forecastHTML += 
+                        `<div class="forecastItem">
+                            <span class="forecastDay">${day}</span>
+                            <img src="http://openweathermap.org/img/wn/${icon}.png" class="forecastIcon">
+                            <span class="forecastTemp">${temperature}${unitSymbol}</span>
+                        </div>`;
+                }
+            });
+            document.getElementById("forecastContainer").innerHTML = forecastHTML;
+        })
+
+        .catch(error => {
+            console.error("error fetching forecast data:", error)
+        });
+}
+
+// Initial fetch
+fetchWeather(); 
+fetchForecast();

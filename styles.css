@@ -3,7 +3,7 @@ body {
     text-align: center;
     margin: 0;
     padding: 0; 
-    background-color: #f2f2f2;
+    background-color: #b9dcf7;
 }
 
 #app {
@@ -13,4 +13,8 @@ body {
 #icon {
     width: 50px;
     height: 50px; 
+}
+
+#forecastContainer {
+    border: 1px solid black
 }

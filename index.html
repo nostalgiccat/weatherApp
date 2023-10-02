@@ -12,16 +12,18 @@
     <body>
         <div id="app">
             <input type="text" id="cityInput" placeholder="Enter a city name">
-            <button onclick="fetchWeather()">Search</button>
+            <button onclick="fetchWeather(),fetchForecast()">Search</button>
             <select name="unit" id="tempUnit">
                 <option value="imperial">°F</option>
                 <option value="metric">°C</option>
-                
             </select>
+
             <h1 id="city"></h1>
+            <img src="" alt="Weather Icon" id="icon">
             <h2 id="temperature"></h2>
             <p id="condition"></p>
-            <img src="" alt="Weather Icon" id="icon">
+
+            <div id="forecastContainer"></div>
         </div>
         
         <script src="app.js" async defer></script>
