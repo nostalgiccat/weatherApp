@@ -41,11 +41,13 @@ function fetchWeather(unit = "imperial") {
 
 function fetchForecast(unit = "imperial") {
     const city = document.getElementById("cityInput").value || "Phoenix";
+
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${unit}`)
         .then(response => response.json())
         .then(data => {
             // Handle forecast data here
             let forecastHTML = '';
+            
             data.list.forEach((forecast,index) => {
                 if (index % 8 === 0) {
                     // Only take on reading per day
