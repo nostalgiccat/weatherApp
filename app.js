@@ -47,7 +47,7 @@ function fetchForecast(unit = "imperial") {
         .then(data => {
             // Handle forecast data here
             let forecastHTML = '';
-            
+
             data.list.forEach((forecast,index) => {
                 if (index % 8 === 0) {
                     // Only take on reading per day
@@ -71,6 +71,8 @@ function fetchForecast(unit = "imperial") {
             console.error("error fetching forecast data:", error)
         });
 }
+
+
 
 // Initial fetch
 fetchWeather(); 
