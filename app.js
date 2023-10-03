@@ -16,7 +16,8 @@ function fetchWeather(unit = "imperial") {
 
         const unitSymbol = unit === "metric" ? "°C" : "°F";
         
-        document.getElementById("temperature").innerText = `${data.main.temp}${unitSymbol}`;
+        const roundedTemp = Math.round(data.main.temp)
+        document.getElementById("temperature").innerText = `${roundedTemp}${unitSymbol}`;
         document.getElementById("condition").innerText = data.weather[0].description;
         document.getElementById("icon").src = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
     })
@@ -53,7 +54,7 @@ function fetchForecast(unit = "imperial") {
                     // Only take on reading per day
                     const date = new Date(forecast.dt * 1000);
                     const day = date.toLocaleString('en-US', {weekday: 'long'});
-                    const temperature = forecast.main.temp; 
+                    const temperature = Math.round(forecast.main.temp); 
                     const unitSymbol = unit === "metric" ? "°C" : "°F";
                     const icon = forecast.weather[0].icon;
                     forecastHTML += 
@@ -66,6 +67,9 @@ function fetchForecast(unit = "imperial") {
             });
             document.getElementById("forecastContainer").innerHTML = forecastHTML;
         })
+
+        //         new Date(forecast.dt * 1000): This converts the timestamp from seconds to milliseconds and creates a JavaScript Date object.
+        // toLocaleString: This method converts the date to a string, and we specify that we want the weekday in long format (e.g., "Monday").
 
         .catch(error => {
             console.error("error fetching forecast data:", error)
