@@ -1,6 +1,33 @@
 const apiKey = "d4034aaf0055f7c6f88af58b17c65c9e";
 let unit = "imperial"; // default unit
+const cities = ["New York", "Los Angeles", "Houston", "Phoenix"]
 
+function autocomplete() {
+    const input = document.getElementById("cityInput").value;
+    let suggestions = [];
+
+    // Filter the cities array based on the input 
+    if (input.length > 0) {
+        suggestions = cities.filter(city => city.toLowerCase().startsWith(input.toLowerCase()));
+    }
+
+    // Generate the HTML for the suggestions 
+    let suggestionHTML = '';
+    suggestions.forEach(city => {
+        suggestionHTML += `<div onclick="selectCity('${city}')">${city}</div>`;
+    })
+
+    // Display the suggestions
+    document.getElementById("autocompleteList").innerHTML = suggestionHTML;
+}
+
+function selectCity(city) {
+    document.getElementById("cityInput").value = city; 
+    document.getElementById("autocompleteList").innerHTML = '';
+
+    // Optionally, fetch the weather for the selected city 
+    fetchWeather(); 
+}
 
 
 function fetchWeather(unit = "imperial") {
@@ -76,6 +103,11 @@ function fetchForecast(unit = "imperial") {
         });
 }
 
+// add event listener for the auto complete
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("cityInput").addEventListener("input", autocomplete);
+    console.log("event listener added")
+})
 
 
 // Initial fetch

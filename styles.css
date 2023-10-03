@@ -37,6 +37,11 @@ body {
     border-radius: 25px;
 }
 
+#autocompleteList div {
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
 /* #tempUnit {
 
 } */
