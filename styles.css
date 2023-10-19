@@ -2,13 +2,31 @@ body {
     font-family: 'Roboto', Arial, sans-serif;
     text-align: center;
     margin: 0;
-    padding: 0; 
-    background: linear-gradient(to bottom, #f2f4f6, #9ab5d1);
+    padding: 30px; 
+    background: hsla(49, 97%, 74%, 1);
+    background-repeat: no-repeat !important;
+
+    /* background: linear-gradient(90deg, hsla(49, 97%, 74%, 1) 0%, hsla(354, 55%, 63%, 1) 50%, hsla(212, 100%, 75%, 1) 100%);
+    
+    background: -moz-linear-gradient(90deg, hsla(49, 97%, 74%, 1) 0%, hsla(354, 55%, 63%, 1) 50%, hsla(212, 100%, 75%, 1) 100%);
+     */
+    background: -webkit-linear-gradient(90deg, hsla(49, 97%, 74%, 1) 0%,  hsla(212, 100%, 75%, 1) 100%);
+    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FDE67D", endColorstr="#D46C76", GradientType=1 );
+}
+#city {
+    font-family: 'Great Vibes';
+    font-size: 80px;
+    padding:0;
+    margin-bottom:0;
+    
+    
+
+}
+#app {
+   
 }
 
-#app {
-    margin-top: 50px;
-}
 
 #icon {
     width: 50px;
@@ -19,7 +37,12 @@ body {
     display: flex; /* changes to horizontal */
     justify-content: space-around;
     flex-wrap: wrap;     /* allows the items to wrap onto multiple lines. */
+    
+}
 
+#forecastContainer div {
+    background-color: #0a9bf5b4;
+    color: white; 
 }
 .forecastItem {
     flex: 1;  /* means it will take up as much space along the main axis as it can */
