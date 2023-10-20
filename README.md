@@ -1,5 +1,6 @@
 https://nostalgiccat.github.io/weatherApp/
 
+
 ###Weather App ☀️🌧️
 Overview
 This Weather App allows you to check the current weather and forecast for any city. Built using HTML, CSS, and JavaScript, it fetches data from the OpenWeather API.
