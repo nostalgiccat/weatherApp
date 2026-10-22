@@ -1,4 +1,4 @@
-const apiKey = "d4034aaf0055f7c6f88af58b17c65c9e";
+const apiKey = "YOUR_OPENWEATHERMAP_API_KEY"; // add your own key; never commit real keys
 let unit = "imperial"; // default unit
 const cities = ["New York", "Los Angeles", "Houston", "Phoenix"]
 
